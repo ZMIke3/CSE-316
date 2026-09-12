@@ -24,15 +24,22 @@ export class ListItemIterator extends Iterator {
     /**
      * @param {WolfieList} list the list to walk
      */
+
+    #list;
+    #cursor;
+    #indexOfLastReturned;
+
     constructor(list) {
         super();
+        this.#list = list ?? [];
+        this.reset();
     }
 
     /**
      * @return {boolean} true while there is another item to hand out
      */
     hasNext() {
-        return false;
+        return this.#cursor < this.#list.length;
     }
 
     /**
@@ -40,12 +47,18 @@ export class ListItemIterator extends Iterator {
      * @throws {RangeError} if there is no next item
      */
     next() {
-        return null;
+        if (!this.hasNext()) {
+            throw new RangeError("ListItemIterator has no next");
+        }
+        this.#indexOfLastReturned = this.#cursor;
+        return this.list[this.#cursor++];
     }
 
     /**
      * Puts the iterator back at the first item.
      */
     reset() {
+        this.#cursor = 0;
+        this.#indexOfLastReturned = -1;
     }
 }
