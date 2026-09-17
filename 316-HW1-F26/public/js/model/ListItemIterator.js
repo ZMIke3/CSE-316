@@ -39,7 +39,7 @@ export class ListItemIterator extends Iterator {
      * @return {boolean} true while there is another item to hand out
      */
     hasNext() {
-        return this.#cursor < this.#list.length;
+        return this.#cursor < this.#list.size();
     }
 
     /**
@@ -51,7 +51,7 @@ export class ListItemIterator extends Iterator {
             throw new RangeError("ListItemIterator has no next");
         }
         this.#indexOfLastReturned = this.#cursor;
-        return this.list[this.#cursor++];
+        return this.#list.getItemAt(this.#cursor++)
     }
 
     /**
