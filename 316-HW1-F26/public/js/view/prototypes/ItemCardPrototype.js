@@ -48,7 +48,7 @@ export class ItemCardPrototype extends CardPrototype {
         const item_descriptor = CardPrototype.requirePart(element, '.item-description');
         const item_date = CardPrototype.requirePart(element, '.item-date-entered');
         item_descriptor.textContent = item.description;
-        item_date.textContent = DateUtil.toISODate(item.dateEntered);
+        item_date.textContent = DateUtil.format(item.dateEntered);
         element.dataset.itemId = item.id;
         element.dataset.index = String(index);
 

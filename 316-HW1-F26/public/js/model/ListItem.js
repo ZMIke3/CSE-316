@@ -31,6 +31,9 @@ export class ListItem {
     #id;
     #description;
     #dateEntered;
+    #priority;
+    #targetDate;
+    #completed;
 
     /**
      * @param {Object} initialValues any subset of the fields below
@@ -38,11 +41,14 @@ export class ListItem {
     constructor({
         id = IdGenerator.next('item'),
         description = '',
-        dateEntered = DateUtil.today()
+        dateEntered = DateUtil.today(), priority, targetDate, completed
     } = {}) {
         this.#id = id;
         this.#description = description;
         this.#dateEntered = DateUtil.clean(dateEntered) ?? DateUtil.today();
+        this.#priority = priority;
+        this.#targetDate = targetDate;
+        this.#completed = completed;
     }
 
     // -------------------------------------------------------------------------
@@ -53,6 +59,9 @@ export class ListItem {
     get id() { return this.#id; }
     get description() { return this.#description; }
     get dateEntered() { return this.#dateEntered; }
+    get priority() { return this.#priority; }
+    get targetDate() { return this.#targetDate; }
+    get completed() { return this.#completed; }
 
     /**
      * @return {Object} just this item's editable values, i.e. everything except
@@ -61,7 +70,10 @@ export class ListItem {
     getValues() {
         return {
             description: this.#description,
-            dateEntered: this.#dateEntered
+            dateEntered: this.#dateEntered,
+            priority: this.#priority,
+            targetDate: this.#targetDate,
+            completed: this.#completed
         };
     }
 
@@ -79,9 +91,12 @@ export class ListItem {
      *
      * @param {Object} values the new description and dateEntered
      */
-    applyValues({ description, dateEntered }) {
+    applyValues({ description, dateEntered, priority, targetDate, completed }) {
         if (description !== undefined) this.#description = description;
         if (dateEntered !== undefined) this.#dateEntered = DateUtil.clean(dateEntered) ?? this.#dateEntered;
+        if (priority !== undefined) this.#priority = priority;
+        if (targetDate !== undefined) this.#targetDate = targetDate;
+        if (completed !== undefined) this.#completed = completed;
     }
 
     // -------------------------------------------------------------------------
