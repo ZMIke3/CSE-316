@@ -2,7 +2,7 @@
 
 
 
-export class VocbularyUtil {
+export class PriorityUtil {
 
 
     /**
