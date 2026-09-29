@@ -44,6 +44,7 @@ export class WolfieList {
         this.#name = name;
         this.#items = items.map((item) =>
             item instanceof ListItem ? item : ListItem.fromJSON(item));
+        this.#countCompleted = 0;
     }
 
     // -------------------------------------------------------------------------
@@ -81,7 +82,9 @@ export class WolfieList {
      * @return {number} number of completed tasks in list item
     */
     countCompleted() {
-        for (const item of items) {
+        this.#countCompleted = 0;
+
+        for (const item of this.#items) {
             if (item.completed == true) {
                 this.#countCompleted++;
             }

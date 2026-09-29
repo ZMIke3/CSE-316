@@ -40,7 +40,7 @@ export class PriorityUtil {
      */
     static clean(value) {
         if (value != "High" && value != "Medium" && value != "Low") {
-            return null;
+            return "Low";
         } 
 
         return value;

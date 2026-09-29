@@ -50,12 +50,9 @@ export class ListItem {
         this.#priority = PriorityUtil.clean(priority);
         this.#targetDate = targetDate;
 
-        if (completed == true || completed == false ) {
-            this.#completed = completed;
-        } else {
-            throw new TypeError('Expected "completed" to be of type boolean');
+        if (completed == null) {
+            this.#completed = false;
         }
-
     }
 
     // -------------------------------------------------------------------------
