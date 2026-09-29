@@ -31,7 +31,7 @@ export class WolfieList {
     #id;
     #name;
     #items;
-
+    #countCompleted;
     /**
      * @param {Object} initialValues
      */
@@ -74,6 +74,20 @@ export class WolfieList {
      */
     getItemAt(index) {
         return (index >= 0 && index < this.#items.length) ? this.#items[index] : null;
+    }
+
+    /**
+     * @param {None}
+     * @return {number} number of completed tasks in list item
+    */
+    countCompleted() {
+        for (const item of items) {
+            if (item.completed == true) {
+                this.#countCompleted++;
+            }
+        }
+
+        return this.#countCompleted;
     }
 
     /**

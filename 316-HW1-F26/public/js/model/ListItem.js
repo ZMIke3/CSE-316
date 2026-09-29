@@ -26,6 +26,7 @@
  */
 import { IdGenerator } from '../common/IdGenerator.js';
 import { DateUtil } from '../common/DateUtil.js';
+import { PriorityUtil } from '../common/PriorityUtil.js';
 
 export class ListItem {
     #id;
@@ -46,9 +47,15 @@ export class ListItem {
         this.#id = id;
         this.#description = description;
         this.#dateEntered = DateUtil.clean(dateEntered) ?? DateUtil.today();
-        this.#priority = priority;
+        this.#priority = PriorityUtil.clean(priority);
         this.#targetDate = targetDate;
-        this.#completed = completed;
+
+        if (completed == true || completed == false ) {
+            this.#completed = completed;
+        } else {
+            throw new TypeError('Expected "completed" to be of type boolean');
+        }
+
     }
 
     // -------------------------------------------------------------------------
@@ -94,7 +101,7 @@ export class ListItem {
     applyValues({ description, dateEntered, priority, targetDate, completed }) {
         if (description !== undefined) this.#description = description;
         if (dateEntered !== undefined) this.#dateEntered = DateUtil.clean(dateEntered) ?? this.#dateEntered;
-        if (priority !== undefined) this.#priority = priority;
+        if (priority !== undefined) this.#priority = PriorityUtil.clean(priority);
         if (targetDate !== undefined) this.#targetDate = targetDate;
         if (completed !== undefined) this.#completed = completed;
     }
