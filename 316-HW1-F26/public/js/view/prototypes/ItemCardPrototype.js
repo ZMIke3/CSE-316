@@ -45,10 +45,12 @@ export class ItemCardPrototype extends CardPrototype {
      * @param {number} index where that item currently sits in the list
      */
     initializeClone(element, item, index) {
-        const item_descriptor = CardPrototype.requirePart(element, '.item-description');
-        const item_date = CardPrototype.requirePart(element, '.item-date-entered');
-        item_descriptor.textContent = item.description;
-        item_date.textContent = DateUtil.format(item.dateEntered);
+        CardPrototype.requirePart(element, '.item-description').textContent = item.description;
+        CardPrototype.requirePart(element, '.item-date-entered').textContent = DateUtil.format(item.dateEntered);
+    //    CardPrototype.requirePart(element, ".item-date-entered").textContent = item.dateEntered;
+        CardPrototype.requirePart(element, ".priority-pill").textContent = item.priority;
+     //   CardPrototype.requirePart(element, ".item-target-date").textContent = item.targetDate;
+       // CardPrototype.requirePart(element, ".item-completed-mark").textContent = item...;
         element.dataset.itemId = item.id;
         element.dataset.index = String(index);
 

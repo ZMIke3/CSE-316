@@ -101,7 +101,7 @@ export class ListItem {
         if (description !== undefined) this.#description = description;
         if (dateEntered !== undefined) this.#dateEntered = DateUtil.clean(dateEntered) ?? this.#dateEntered;
         if (priority !== undefined) this.#priority = PriorityUtil.clean(priority);
-        if (targetDate !== undefined) this.#targetDate = targetDate;
+        if (targetDate !== undefined) this.#targetDate = DateUtil.clean(targetDate) ?? this.#targetDate;
         if (completed !== undefined) this.#completed = completed;
     }
 

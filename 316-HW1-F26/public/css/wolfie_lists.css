@@ -68,6 +68,11 @@
     --item-grid-areas: "handle description entered actions";
     --card-inline-padding: 0.875rem;
     --card-accent-width: 0.3125rem;
+
+    /* Priority for List */
+    --priority-high: #b3261e;
+    --priority-medium: #b36b00;
+    --priority-low: #2f6b3c;
 }
 
 /* ==========================================================================
@@ -376,6 +381,31 @@ body {
     outline-offset: 0.0625rem;
 }
 
+.priority-pill {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-radius: 1rem;
+    white-space: nowrap;
+}
+
+.priority-pill.priority-high {
+    color: var(--sbu-white);
+    background-color: var(--priority-high);
+}
+
+.priority-pill.priority-medium {
+    color: var(--sbu-white);
+    background-color: var(--priority-medium);
+}
+
+.priority-pill.priority-low {
+    color: var(--sbu-white);
+    background-color: var(--priority-low);
+}
 /* ==========================================================================
    home screen cards, one per list
    ========================================================================== */
