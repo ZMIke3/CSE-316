@@ -64,8 +64,10 @@
         "Apple Chancery", cursive;
 
     /* ----- the one grid that both an item card and the column headers use ----- */
-    --item-grid-columns: 1.75rem minmax(8rem, 1fr) 7rem 4.75rem;
-    --item-grid-areas: "handle description entered actions";
+    --item-grid-columns: 1.75rem minmax(7rem, 1fr) 5.5rem 7rem 4.75rem;
+    --item-grid-areas: "handle description priority entered actions";
+    /* --item-grid-columns: 1.75rem minmax(8rem, 1fr) 7rem 4.75rem;
+    --item-grid-areas: "handle description entered actions"; */
     --card-inline-padding: 0.875rem;
     --card-accent-width: 0.3125rem;
 
@@ -382,6 +384,9 @@ body {
 }
 
 .priority-pill {
+    grid-area: priority;
+    justify-self: start;
+    align-self: center;
     display: inline-block;
     padding: 0.125rem 0.5rem;
     font-size: 0.6875rem;
@@ -391,6 +396,11 @@ body {
     border-radius: 1rem;
     white-space: nowrap;
 }
+
+/* .item-target-date,
+.item-completed-mark {
+    grid-area: actions; parked here until these are actually built out
+} */
 
 .priority-pill.priority-high {
     color: var(--sbu-white);

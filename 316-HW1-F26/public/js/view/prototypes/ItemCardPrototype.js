@@ -20,6 +20,7 @@
  */
 import { CardPrototype } from './CardPrototype.js';
 import { DateUtil } from '../../common/DateUtil.js';
+import { PriorityUtil } from '../../common/PriorityUtil.js';
 
 export class ItemCardPrototype extends CardPrototype {
     /** the id of this card's <template> in index.html */
@@ -47,9 +48,18 @@ export class ItemCardPrototype extends CardPrototype {
     initializeClone(element, item, index) {
         CardPrototype.requirePart(element, '.item-description').textContent = item.description;
         CardPrototype.requirePart(element, '.item-date-entered').textContent = DateUtil.format(item.dateEntered);
-    //    CardPrototype.requirePart(element, ".item-date-entered").textContent = item.dateEntered;
-        CardPrototype.requirePart(element, ".priority-pill").textContent = item.priority;
-     //   CardPrototype.requirePart(element, ".item-target-date").textContent = item.targetDate;
+        const priority_type = CardPrototype.requirePart(element, ".priority-pill");
+        priority_type.textContent = item.priority;
+
+        if (item.priority === PriorityUtil.PRIORITY_HIGH) {
+            priority_type.classList.add("priority-high");
+        } else if (item.priority === PriorityUtil.PRIORITY_MEDIUM) {
+            priority_type.classList.add("priority-medium");
+        } else {
+            priority_type.classList.add("priority-low");
+        }
+
+        CardPrototype.requirePart(element, ".item-target-date").textContent = item.targetDate;
        // CardPrototype.requirePart(element, ".item-completed-mark").textContent = item...;
         element.dataset.itemId = item.id;
         element.dataset.index = String(index);
