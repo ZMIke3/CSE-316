@@ -52,6 +52,8 @@ export class ListItem {
 
         if (completed == null) {
             this.#completed = false;
+        } else {
+            this.#completed = completed;
         }
     }
 
