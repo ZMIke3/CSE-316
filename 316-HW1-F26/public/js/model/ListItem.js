@@ -68,7 +68,7 @@ export class ListItem {
     get priority() { return this.#priority; }
     get targetDate() { return this.#targetDate; }
     get completed() { return this.#completed; }
-
+ 
     /**
      * @return {Object} just this item's editable values, i.e. everything except
      * the id. This is the snapshot the edit transaction remembers.

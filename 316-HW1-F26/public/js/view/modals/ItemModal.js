@@ -25,6 +25,7 @@ export class ItemModal extends Modal {
     #dateEnteredInput;
     #targetDateInput;
     #priorityInput;
+    #completedInput;
     #nextButton;
     #previousButton;
     #cancelButton;
@@ -43,6 +44,7 @@ export class ItemModal extends Modal {
         this.#targetDateInput = document.getElementById('item-target-date-input');
         this.#dateEnteredInput = document.getElementById('item-date-entered-input');
         this.#priorityInput = document.getElementById('item-priority-select'); 
+        this.#completedInput = document.getElementById('item-completed-checkbox'); 
         this.#nextButton = document.getElementById('item-next-button');
         this.#previousButton = document.getElementById('item-previous-button');
         this.#cancelButton = document.getElementById('item-cancel-button');
@@ -127,7 +129,8 @@ export class ItemModal extends Modal {
         this.#descriptionInput.value = values.description ?? '';
         this.#dateEnteredInput.value = values.dateEntered ?? DateUtil.today();
         this.#priorityInput.value = values.priority;
-        this.#targetDateInput = values.targetDate;
+        this.#targetDateInput.value = values.targetDate; 
+        this.#completedInput.value = values.completed;
     }
 
     /**
@@ -138,7 +141,8 @@ export class ItemModal extends Modal {
             description: this.#descriptionInput.value.trim(),
             dateEntered: this.#dateEnteredInput.value || DateUtil.today(),
             priority:  this.#priorityInput.value,
-            targetDate: this.#targetDateInput.value
+            targetDate: this.#targetDateInput.value,
+            completed: this.#completedInput.checked
         };
     }
 
