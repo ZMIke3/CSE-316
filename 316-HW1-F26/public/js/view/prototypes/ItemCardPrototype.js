@@ -59,8 +59,15 @@ export class ItemCardPrototype extends CardPrototype {
             priority_type.classList.add("priority-low");
         }
 
-        CardPrototype.requirePart(element, ".item-target-date").textContent = item.targetDate;
-       // CardPrototype.requirePart(element, ".item-completed-mark").textContent = item...;
+        CardPrototype.requirePart(element, ".item-target-date").textContent = DateUtil.format(item.targetDate);
+        CardPrototype.requirePart(element, ".item-completed-mark").textContent = item.completed ? '✓' : '';
+
+        element.classList.add(item.priority === PriorityUtil.PRIORITY_HIGH ? 'priority-high' : item.priority === PriorityUtil.PRIORITY_MEDIUM ? 'priority-medium' : 'priority-low');
+
+        if (item.completed) {
+            element.classList.add('item-completed');
+        }
+
         element.dataset.itemId = item.id;
         element.dataset.index = String(index);
 

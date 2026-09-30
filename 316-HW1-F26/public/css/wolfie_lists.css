@@ -64,8 +64,8 @@
         "Apple Chancery", cursive;
 
     /* ----- the one grid that both an item card and the column headers use ----- */
-    --item-grid-columns: 1.75rem minmax(7rem, 1fr) 5.5rem 7rem 4.75rem;
-    --item-grid-areas: "handle description priority entered actions";
+    --item-grid-columns: 1.75rem minmax(7rem, 1fr) 7rem 5.5rem 7rem 4.75rem 4.75rem;
+    --item-grid-areas: "handle description entered priority target completed actions";
     /* --item-grid-columns: 1.75rem minmax(8rem, 1fr) 7rem 4.75rem;
     --item-grid-areas: "handle description entered actions"; */
     --card-inline-padding: 0.875rem;
@@ -397,11 +397,6 @@ body {
     white-space: nowrap;
 }
 
-/* .item-target-date,
-.item-completed-mark {
-    grid-area: actions; parked here until these are actually built out
-} */
-
 .priority-pill.priority-high {
     color: var(--sbu-white);
     background-color: var(--priority-high);
@@ -415,6 +410,18 @@ body {
 .priority-pill.priority-low {
     color: var(--sbu-white);
     background-color: var(--priority-low);
+}
+
+.item-card.priority-high {
+    border-left-color: var(--priority-high);
+}
+
+.item-card.priority-medium {
+    border-left-color: var(--priority-medium);
+}
+
+.item-card.priority-low {
+    border-left-color: var(--priority-low);
 }
 /* ==========================================================================
    home screen cards, one per list
@@ -507,9 +514,19 @@ body {
 }
 
 .item-target-date {
+    grid-area: target;
+    text-align: center;
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--grey-700);
 }
 
 .item-completed-mark {
+    grid-area: completed;
+    justify-self: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--completed-mark);
 }
 
 /* The dates are centered in their columns rather than pushed to one side, which
@@ -535,9 +552,12 @@ body {
 
 /* a finished item is struck through and steps into the background */
 .item-card.item-completed {
+    background-color: var(--grey-050);
 }
 
 .item-card.item-completed .item-description {
+    text-decoration: line-through;
+    color: var(--grey-500);
 }
 
 /* ----- drag and drop ----- */
@@ -868,11 +888,22 @@ body.modal-is-open #app {
         display: none;
     }
 
-    .item-card {
+    /* .item-card {
         grid-template-columns: 1.75rem 1fr 1fr auto;
         grid-template-areas:
             "handle description description actions"
             "handle entered     entered     actions";
+        gap: 0.375rem 0.75rem;
+        align-items: center;
+    } */
+
+
+    .item-card {
+        grid-template-columns: 1.75rem 1fr 1fr auto;
+        grid-template-areas:
+            "handle description description actions"
+            "handle entered     target      actions"
+            "handle priority    completed   actions";
         gap: 0.375rem 0.75rem;
         align-items: center;
     }
@@ -891,12 +922,12 @@ body.modal-is-open #app {
 
     /* stacked into rows there are no columns to center anything in, and a
        centered value in a row of its own reads as a mistake */
-    .item-date-entered {
+    .item-target-date {
         text-align: left;
     }
 
-    .item-target-date,
     .item-completed-mark {
+        justify-self: start;
     }
 
     /* nothing is drawn here at all unless the item is completed, so the label
