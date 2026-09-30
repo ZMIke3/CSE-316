@@ -60,7 +60,7 @@ export class ItemModal extends Modal {
      */
     openForItem(list, index) {
         const item = list?.getItemAt(index);
-        if (!item) return;
+        if (!item) console.log("Nah bro"); return;
 
         this.#index = index;
         this.#itemCount = list.size();

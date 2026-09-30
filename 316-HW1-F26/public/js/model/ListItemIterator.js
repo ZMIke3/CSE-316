@@ -27,6 +27,7 @@ export class ListItemIterator extends Iterator {
 
     #list;
     #cursor;
+    index;
     #indexOfLastReturned;
 
     constructor(list) {
@@ -34,6 +35,15 @@ export class ListItemIterator extends Iterator {
         this.#list = list ?? [];
         this.reset();
     }
+
+    /**
+     * @return {number} returns index
+    */
+    
+    get index() {
+        return this.#indexOfLastReturned;
+    }
+
 
     /**
      * @return {boolean} true while there is another item to hand out
@@ -51,7 +61,7 @@ export class ListItemIterator extends Iterator {
             throw new RangeError("ListItemIterator has no next");
         }
         this.#indexOfLastReturned = this.#cursor;
-        return this.#list.getItemAt(this.#cursor++)
+        return this.#list.getItemAt(this.#cursor++);
     }
 
     /**
