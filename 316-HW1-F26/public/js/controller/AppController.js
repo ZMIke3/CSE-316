@@ -231,7 +231,7 @@ export class AppController extends Observer {
     #handleItemCommit(event) {
         const index = event.get('index');
         const values = event.get('values');
-        const then = event.get('then', 'close');
+        const then = event.get('then', 'close', 'next', 'previous');
 
         const list = this.#model.getCurrentList();
         if (list === null) {
@@ -255,6 +255,12 @@ export class AppController extends Observer {
         // Next keeps the modal open and moves it onto the following item
         if (then === 'next') {
             this.#itemModal.openForItem(list, index + 1);
+        } else {
+            this.#itemModal.hide();
+        }
+
+        if (then === 'previous') {
+            this.#itemModal.openForItem(list, index - 1);
         } else {
             this.#itemModal.hide();
         }

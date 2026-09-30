@@ -27,7 +27,6 @@ export class ListItemIterator extends Iterator {
 
     #list;
     #cursor;
-    index;
     #indexOfLastReturned;
 
     constructor(list) {

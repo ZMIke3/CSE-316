@@ -144,13 +144,29 @@
             </div>
 
             <div class="field">
+                <label class="priority-select" for="item-priority-select">Priority</label>
+                <select id="item-priority-select" name="priority">
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+            </div>
+
+            <div class="field">
                 <label class="field-label" for="item-date-entered-input">Date Entered</label>
                 <input id="item-date-entered-input" type="date" />
+            </div>
+
+            <div class="field">
+                <label class="field-label" for="item-target-date-input">Target Date</label>
+                <input id="item-target-date-input" type="date" />
             </div>
         </form>
 
         <div class="modal-footer">
             <div class="modal-footer-group">
+                <button id="item-previous-button" type="button" class="button button-quiet">
+                ◀ Previous</button>
                 <button id="item-next-button" type="button" class="button button-quiet"
                     title="Save and move to the next item">Next&nbsp;&#x25B6;</button>
             </div>

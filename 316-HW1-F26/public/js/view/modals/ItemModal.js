@@ -23,7 +23,10 @@ export class ItemModal extends Modal {
     #form;
     #descriptionInput;
     #dateEnteredInput;
+    #targetDateInput;
+    #priorityInput;
     #nextButton;
+    #previousButton;
     #cancelButton;
     #okButton;
 
@@ -37,8 +40,11 @@ export class ItemModal extends Modal {
         this.#heading = document.getElementById('item-modal-heading');
         this.#form = document.getElementById('item-modal-form');
         this.#descriptionInput = document.getElementById('item-description-input');
+        this.#targetDateInput = document.getElementById('item-target-date-input');
         this.#dateEnteredInput = document.getElementById('item-date-entered-input');
+        this.#priorityInput = document.getElementById('item-priority-select'); 
         this.#nextButton = document.getElementById('item-next-button');
+        this.#previousButton = document.getElementById('item-previous-button');
         this.#cancelButton = document.getElementById('item-cancel-button');
         this.#okButton = document.getElementById('item-ok-button');
 
@@ -60,7 +66,7 @@ export class ItemModal extends Modal {
      */
     openForItem(list, index) {
         const item = list?.getItemAt(index);
-        if (!item) console.log("Nah bro"); return;
+        if (!item) return;
 
         this.#index = index;
         this.#itemCount = list.size();
@@ -97,6 +103,8 @@ export class ItemModal extends Modal {
         this.#okButton.addEventListener('click', () => this.#commit('close'));
         this.#cancelButton.addEventListener('click', () => this.requestCancel());
         this.#nextButton.addEventListener('click', () => this.#commit('next'));
+        this.#previousButton.addEventListener('click', () => this.#commit('previous'));
+
 
         // pressing Enter anywhere in the form is the same as pressing OK.
         // preventDefault also stops the browser from submitting the form itself.
@@ -118,6 +126,8 @@ export class ItemModal extends Modal {
     #loadValues(values) {
         this.#descriptionInput.value = values.description ?? '';
         this.#dateEnteredInput.value = values.dateEntered ?? DateUtil.today();
+        this.#priorityInput.value = values.priority;
+        this.#targetDateInput = values.targetDate;
     }
 
     /**
@@ -126,7 +136,9 @@ export class ItemModal extends Modal {
     #collectValues() {
         return {
             description: this.#descriptionInput.value.trim(),
-            dateEntered: this.#dateEnteredInput.value || DateUtil.today()
+            dateEntered: this.#dateEnteredInput.value || DateUtil.today(),
+            priority:  this.#priorityInput.value,
+            targetDate: this.#targetDateInput.value
         };
     }
 
@@ -135,6 +147,7 @@ export class ItemModal extends Modal {
      */
     #updateNavigationButtons() {
         this.#nextButton.disabled = this.#index >= this.#itemCount - 1;
+        this.#previousButton.disabled = this.#index == 0;
     }
 
     /**
