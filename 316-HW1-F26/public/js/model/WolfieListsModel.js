@@ -182,7 +182,7 @@ export class WolfieListsModel extends Subject {
         const index = this.#lists.findIndex((list) => list.id === listId);
         const list = this.#lists[index];
         const clone = list.clone();
-        this.#lists.splice(listId + 1, 0, clone);
+        this.#lists.splice(index + 1, 0, clone);
     }
 
     /**
