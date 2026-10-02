@@ -98,7 +98,7 @@ export class AppController extends Observer {
                 this.#handleCreateList();
                 break;
             case EventTypes.DUPLICATE_LIST_REQUESTED:
-                this.#handleCreateList();
+                this.#handleConfirmAccepted();
                 break;
             case EventTypes.OPEN_LIST_REQUESTED:
                 this.#openList(event.get('listId'));
@@ -219,6 +219,17 @@ export class AppController extends Observer {
         this.#openList(list.id);
         this.#listView.focusNameInput();
     }
+    
+    /**
+     * A duplicate list is created.
+     * 
+    */
+
+    // #handleDuplicateList() {
+        
+    //     this.#model.duplicateList(context.listId);
+    // }
+
 
     #handleAddItem() {
         this.#itemModal.openForNewItem();

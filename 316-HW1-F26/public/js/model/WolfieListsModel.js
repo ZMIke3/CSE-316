@@ -179,7 +179,8 @@ export class WolfieListsModel extends Subject {
      * @return {WolfieList} the duplicate list
      */
     duplicateList(listId) {
-        const list = this.#lists[listId];
+        const index = this.#lists.findIndex((list) => list.id === listId);
+        const list = this.#lists[index];
         const clone = list.clone();
         this.#lists.splice(listId + 1, 0, clone);
     }
