@@ -81,6 +81,26 @@ export class ItemModal extends Modal {
     }
 
     /**
+     * Opens the modal on one existing item.
+     *
+     * @param {WolfieList} list the list that item belongs to
+     * @param {number} index which item
+    */
+    openForNewItem(list, index) {
+        // const item = list?.getItemAt(index);
+        // if (!item) return;
+
+        this.#index = index;
+        this.#itemCount = list.size();
+
+        this.#heading.textContent = `New Item ${index + 1} of ${list.size()}`;
+        this.#okButton.textContent = 'Add';
+      //  this.#loadValues(item.getValues());
+        // this.#updateNavigationButtons();
+        this.show();
+    }
+
+    /**
      * The description is the field the user actually came here to type in, so
      * that is where focus belongs, not on whatever control happens to come first.
      */

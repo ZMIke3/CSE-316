@@ -119,6 +119,9 @@ export class AppController extends Observer {
             case EventTypes.EDIT_ITEM_REQUESTED:
                 this.#itemModal.openForItem(this.#model.getCurrentList(), event.get('index'));
                 break;
+            case EventTypes.ADD_ITEM_REQUESTED:
+                this.#handleAddItem();
+                break;
             case EventTypes.DUPLICATE_ITEM_REQUESTED:
                 this.#model.addTransaction(
                     new DuplicateItem_Transaction(this.#model, event.get('index')));
@@ -212,6 +215,14 @@ export class AppController extends Observer {
         this.#listView.focusNameInput();
     }
 
+    #handleAddItem() {
+       // const list = this.#model.createNewList();
+       ItemModal.openForNewItem();
+        this.#openList(list.id);
+        this.#listView.focusNameInput();
+        this.#model.addTransaction(new DeleteItem_Transaction(this.#model, context.index));
+    }
+
     /**
      * Renaming the open list is an edit made inside that list, so it goes on the
      * undo stack like every other edit. We work out what the name would actually
@@ -280,7 +291,7 @@ export class AppController extends Observer {
         this.#confirmModal.ask({
             title: 'Delete This Item?',
             //message: `The item named "${ItemName}" and everything in it will be permanently deleted. Deleting an item cannot be undone.`,
-            message: `This item and everything in it will be permanently deleted. Deleting an item cannot be undone.`,
+            message: `This item and everything in it will be deleted.`,
             acceptLabel: 'Delete Item',
             context: { action: 'delete-item', index }
         });
