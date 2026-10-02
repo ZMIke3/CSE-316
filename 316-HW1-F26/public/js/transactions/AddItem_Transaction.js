@@ -13,17 +13,15 @@ export class AddItem_Transaction extends jsTPS_Transaction {
     /**
      * @param {WolfieListsModel} model
      * @param {ListItem} item Item to add to the list
-     * @param {number} index location to add it
      */
-    constructor(model, index, item) {
+    constructor(model, item) {
         super();
         this.#model = model;
-        this.#index = index;
         this.#item = item;
     }
 
     doTransaction() {
-        this.#model.addItemToCurrentList(this.#item, this.#index + 1);
+        this.#model.addItemToCurrentList(this.#item);
     }
 
     undoTransaction() {

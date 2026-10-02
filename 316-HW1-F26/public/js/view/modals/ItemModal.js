@@ -81,24 +81,28 @@ export class ItemModal extends Modal {
     }
 
     /**
-     * Opens the modal on one existing item.
+     * Opens the modal for a new item.
      *
-     * @param {WolfieList} list the list that item belongs to
-     * @param {number} index which item
     */
-    openForNewItem(list, index) {
-        // const item = list?.getItemAt(index);
-        // if (!item) return;
+    openForNewItem() {
+        this.#index = -1;
+        this.#itemCount = 0;
 
-        this.#index = index;
-        this.#itemCount = list.size();
-
-        this.#heading.textContent = `New Item ${index + 1} of ${list.size()}`;
+        this.#heading.textContent = 'New Item';
         this.#okButton.textContent = 'Add';
-      //  this.#loadValues(item.getValues());
-        // this.#updateNavigationButtons();
+
+        this.#descriptionInput.value = '';
+        this.#dateEnteredInput.value = DateUtil.today();
+        this.#priorityInput.value = 'Low';
+        this.#targetDateInput.value = '';
+        this.#completedInput.checked = false;
+
+        this.#previousButton.disabled = true;
+        this.#nextButton.disabled = true;
+
         this.show();
-    }
+        this.focusFirstControl();
+}
 
     /**
      * The description is the field the user actually came here to type in, so

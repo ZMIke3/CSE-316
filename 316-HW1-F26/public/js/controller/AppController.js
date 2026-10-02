@@ -216,11 +216,7 @@ export class AppController extends Observer {
     }
 
     #handleAddItem() {
-       // const list = this.#model.createNewList();
-       ItemModal.openForNewItem();
-        this.#openList(list.id);
-        this.#listView.focusNameInput();
-        this.#model.addTransaction(new DeleteItem_Transaction(this.#model, context.index));
+        this.#itemModal.openForNewItem();
     }
 
     /**
@@ -274,6 +270,11 @@ export class AppController extends Observer {
             this.#itemModal.openForItem(list, index - 1);
         } else {
             this.#itemModal.hide();
+        }
+
+        if (index == -1) {
+            const item = new ListItem(values);
+            this.#model.addTransaction(new AddItem_Transaction(this.#model, item));
         }
 
     }

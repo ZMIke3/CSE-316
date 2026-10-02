@@ -28,7 +28,7 @@ export class ListView extends Subject {
     #homeButton;
     #listNameInput;
     #cardPrototype;
-
+    #additemButton;
     // drag and drop bookkeeping
     #dragFromIndex;
     #dropTargetIndex;
@@ -49,6 +49,7 @@ export class ListView extends Subject {
         this.#closeButton = document.getElementById('close-button');
         this.#homeButton = document.getElementById('home-button');
         this.#listNameInput = document.getElementById('list-name-input');
+        this.#additemButton = document.getElementById('add-item-button')
 
         this.#cardPrototype = new ItemCardPrototype();
 
@@ -182,6 +183,10 @@ export class ListView extends Subject {
         // to go wrong.
         this.#homeButton.addEventListener('click', () => {
             this.notifyObservers(EventTypes.CLOSE_LIST_REQUESTED);
+        });
+
+        this.#additemButton.addEventListener('click', () => {
+            this.notifyObservers(EventTypes.ADD_ITEM_REQUESTED);
         });
 
         // change fires once the user is finished, i.e. on Enter or on leaving the
