@@ -296,6 +296,9 @@ export class AppController extends Observer {
             case 'delete-list':
                 this.#model.deleteList(context.listId);
                 break;
+            case 'delete-item':
+                this.#model.removeItemFromCurrentList(context.index);
+                break;
             default:
                 console.warn('AppController was confirmed for an unknown action:', context);
                 break;
