@@ -98,7 +98,7 @@ export class AppController extends Observer {
                 this.#handleCreateList();
                 break;
             case EventTypes.DUPLICATE_LIST_REQUESTED:
-                this.#handleConfirmAccepted();
+                this.#model.duplicateList(event.get('listId'));
                 break;
             case EventTypes.OPEN_LIST_REQUESTED:
                 this.#openList(event.get('listId'));
@@ -219,17 +219,6 @@ export class AppController extends Observer {
         this.#openList(list.id);
         this.#listView.focusNameInput();
     }
-    
-    /**
-     * A duplicate list is created.
-     * 
-    */
-
-    // #handleDuplicateList() {
-        
-    //     this.#model.duplicateList(context.listId);
-    // }
-
 
     #handleAddItem() {
         this.#itemModal.openForNewItem();
@@ -323,9 +312,6 @@ export class AppController extends Observer {
         switch (context.action) {
             case 'delete-list':
                 this.#model.deleteList(context.listId);
-                break;
-            case 'duplicate-list':
-                this.#model.duplicateList(context.listId);
                 break;
             case 'delete-item':
                 this.#model.addTransaction(new DeleteItem_Transaction(this.#model, context.index));

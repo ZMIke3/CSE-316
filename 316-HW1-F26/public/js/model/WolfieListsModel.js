@@ -180,11 +180,13 @@ export class WolfieListsModel extends Subject {
      */
     duplicateList(listId) {
         const index = this.#lists.findIndex((list) => list.id === listId);
+        if (index < 0) return;
+        
         const list = this.#lists[index];
         const clone = list.clone();
         this.#lists.splice(index + 1, 0, clone);
+        this.#saveAndAnnounceLists();
     }
-
     /**
      * PROTOTYPE DESIGN PATTERN. The list clones itself, we simply file the copy
      * away directly beneath the original.
