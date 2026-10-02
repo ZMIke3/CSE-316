@@ -250,6 +250,11 @@ export class AppController extends Observer {
             return;
         }
 
+        if (index == -1) {
+            const item = new ListItem(values);
+            this.#model.addTransaction(new AddItem_Transaction(this.#model, item));
+        }
+
         // record the edit, unless nothing actually changed
         const item = list.getItemAt(index);
         if (item === null) {
@@ -271,12 +276,6 @@ export class AppController extends Observer {
         } else {
             this.#itemModal.hide();
         }
-
-        if (index == -1) {
-            const item = new ListItem(values);
-            this.#model.addTransaction(new AddItem_Transaction(this.#model, item));
-        }
-
     }
 
     #confirmDeleteList(listId, listName) {

@@ -25,7 +25,8 @@ export class AddItem_Transaction extends jsTPS_Transaction {
     }
 
     undoTransaction() {
-        this.#model.removeItemFromCurrentList(this.#index + 1);
+        const index = this.#model.getCurrentList()?.size();
+        this.#model.removeItemFromCurrentList(index);
     }
 
     toString() {
