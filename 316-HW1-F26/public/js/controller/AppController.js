@@ -123,8 +123,7 @@ export class AppController extends Observer {
                     new DuplicateItem_Transaction(this.#model, event.get('index')));
                 break;
             case EventTypes.DELETE_ITEM_REQUESTED:
-                this.#model.addTransaction(
-                    new DeleteItem_Transaction(this.#model, event.get('index')));
+                this.#confirmDeleteItem(event.get('index'));
                 break;
             case EventTypes.MOVE_ITEM_REQUESTED:
                 this.#model.addTransaction(new MoveItem_Transaction(
@@ -273,6 +272,16 @@ export class AppController extends Observer {
             message: `The list named "${listName}" and everything in it will be permanently deleted. Deleting a list cannot be undone.`,
             acceptLabel: 'Delete List',
             context: { action: 'delete-list', listId }
+        });
+    }
+
+    #confirmDeleteItem(index) {
+        this.#confirmModal.ask({
+            title: 'Delete This Item?',
+            //message: `The item named "${ItemName}" and everything in it will be permanently deleted. Deleting an item cannot be undone.`,
+            message: `This item and everything in it will be permanently deleted. Deleting an item cannot be undone.`,
+            acceptLabel: 'Delete Item',
+            context: { action: 'delete-item', index }
         });
     }
 

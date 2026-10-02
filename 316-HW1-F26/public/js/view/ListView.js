@@ -247,6 +247,11 @@ export class ListView extends Subject {
             case 'duplicate-item':
                 this.notifyObservers(EventTypes.DUPLICATE_ITEM_REQUESTED, { index });
                 break;
+            
+                case 'delete-item':
+                this.notifyObservers(EventTypes.DELETE_ITEM_REQUESTED, { index });
+                break;
+
             default:
                 this.notifyObservers(EventTypes.EDIT_ITEM_REQUESTED, { index });
                 break;
