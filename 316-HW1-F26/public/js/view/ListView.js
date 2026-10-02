@@ -228,22 +228,13 @@ export class ListView extends Subject {
      * @param {EventTarget} target whatever was clicked inside the container
      */
     #handleCardActivation(target) {
-        console.log('card activation', target);
+        
         const card = target.closest('.item-card');
-        console.log('card:', card, 'index:', card?.dataset.index);
         if (card === null) return;
         const index = Number(card.dataset.index);
         const list = this.#model.getCurrentList();
         const item = list?.getItemAt(index);
-        console.log('list:', list, 'item:', item);
         if (!item) return;
-        // const card = target.closest('.item-card');
-        // if (card === null) return;
-
-        // const index = Number(card.dataset.index);
-        // const list = this.#model.getCurrentList();
-        // const item = list?.getItemAt(index);
-        // if (!item) return;
 
         const actionButton = target.closest('[data-action]');
         const action = actionButton?.dataset.action ?? 'edit-item';
@@ -256,6 +247,7 @@ export class ListView extends Subject {
                 case 'delete-item':
                 this.notifyObservers(EventTypes.DELETE_ITEM_REQUESTED, { index });
                 break;
+
 
             default:
                 this.notifyObservers(EventTypes.EDIT_ITEM_REQUESTED, { index });

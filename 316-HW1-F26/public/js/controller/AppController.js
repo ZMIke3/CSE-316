@@ -25,6 +25,8 @@ import { EditItem_Transaction } from '../transactions/EditItem_Transaction.js';
 import { MoveItem_Transaction } from '../transactions/MoveItem_Transaction.js';
 import { RenameList_Transaction } from '../transactions/RenameList_Transaction.js';
 import { DeleteItem_Transaction } from '../transactions/DeleteItem_Transaction.js';
+import { AddItem_Transaction } from '../transactions/AddItem_Transaction.js';
+import { ListItem } from '../model/ListItem.js';
 
 export class AppController extends Observer {
     #model;
@@ -93,6 +95,9 @@ export class AppController extends Observer {
         switch (event.type) {
             // ---------- the home screen ----------
             case EventTypes.CREATE_LIST_REQUESTED:
+                this.#handleCreateList();
+                break;
+            case EventTypes.DUPLICATE_LIST_REQUESTED:
                 this.#handleCreateList();
                 break;
             case EventTypes.OPEN_LIST_REQUESTED:
@@ -307,6 +312,9 @@ export class AppController extends Observer {
         switch (context.action) {
             case 'delete-list':
                 this.#model.deleteList(context.listId);
+                break;
+            case 'duplicate-list':
+                this.#model.duplicateList(context.listId);
                 break;
             case 'delete-item':
                 this.#model.addTransaction(new DeleteItem_Transaction(this.#model, context.index));

@@ -9,7 +9,7 @@ import { ListItem } from '../model/ListItem.js';
 export class AddItem_Transaction extends jsTPS_Transaction {
     #model;
     #index;
-    #item
+    #item;
     /**
      * @param {WolfieListsModel} model
      * @param {ListItem} item Item to add to the list
@@ -22,11 +22,11 @@ export class AddItem_Transaction extends jsTPS_Transaction {
 
     doTransaction() {
         this.#model.addItemToCurrentList(this.#item);
+        this.#index = this.#model.getCurrentList()?.size();
     }
 
     undoTransaction() {
-        const index = this.#model.getCurrentList()?.size();
-        this.#model.removeItemFromCurrentList(index);
+        this.#model.removeItemFromCurrentList(this.#index - 1);
     }
 
     toString() {

@@ -160,6 +160,12 @@ export class HomeView extends Subject {
                     listName: list.name
                 });
                 break;
+                case 'duplicate-list':
+                this.notifyObservers(EventTypes.DUPLICATE_LIST_REQUESTED, {
+                    listId,
+                    listName: list.name
+                });
+                break;
             default:
                 this.notifyObservers(EventTypes.OPEN_LIST_REQUESTED, { listId });
                 break;

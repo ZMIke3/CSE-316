@@ -174,6 +174,17 @@ export class WolfieListsModel extends Subject {
     }
 
     /**
+     * Makes a duplicate of an existing lis
+     *
+     * @return {WolfieList} the duplicate list
+     */
+    duplicateList(listId) {
+        const list = this.#lists[listId];
+        const clone = list.clone();
+        this.#lists.splice(listId + 1, 0, clone);
+    }
+
+    /**
      * PROTOTYPE DESIGN PATTERN. The list clones itself, we simply file the copy
      * away directly beneath the original.
      *
