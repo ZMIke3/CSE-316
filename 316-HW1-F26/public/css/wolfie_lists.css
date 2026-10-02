@@ -738,12 +738,21 @@ body.modal-is-open #app {
 }
 
 .field-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
 }
 
 .field-row-tight {
 }
 
+/* .checkbox-field {
+} */
+
 .checkbox-field {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .checkbox-field input {
@@ -935,7 +944,13 @@ body.modal-is-open #app {
     .item-card.item-completed .item-completed-mark::before {
     }
 
+    /* .field-row {
+    } */
+
     .field-row {
+        display: flex;
+        align-items: flex-end;
+        gap: 1rem;
     }
 
     .field-row-tight {

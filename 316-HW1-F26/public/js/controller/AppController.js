@@ -255,15 +255,12 @@ export class AppController extends Observer {
         // Next keeps the modal open and moves it onto the following item
         if (then === 'next') {
             this.#itemModal.openForItem(list, index + 1);
-        } else {
-            this.#itemModal.hide();
-        }
-
-        if (then === 'previous') {
+        } else if (then === 'previous') {
             this.#itemModal.openForItem(list, index - 1);
         } else {
             this.#itemModal.hide();
         }
+
     }
 
     #confirmDeleteList(listId, listName) {

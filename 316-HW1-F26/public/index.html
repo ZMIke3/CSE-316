@@ -142,29 +142,33 @@
                 <input id="item-description-input" type="text" maxlength="200"
                     placeholder="What needs to be done?" />
             </div>
+            <div class="field-row">
+                <div class="field">
+                    <label class="field-label" for="item-date-entered-input">Date Entered</label>
+                    <input id="item-date-entered-input" type="date" />
+                </div>
+                
+                <div class="field">
+                    <label class="priority-select" for="item-priority-select">Priority</label>
+                    <select id="item-priority-select" name="priority">
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                </div>
+        </div>
 
-            <div class="field">
-                <label class="priority-select" for="item-priority-select">Priority</label>
-                <select id="item-priority-select" name="priority">
-                    <option value="High">High</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Low">Low</option>
-                </select>
-            </div>
 
-            <div class="field">
-                <label class="field-label" for="item-date-entered-input">Date Entered</label>
-                <input id="item-date-entered-input" type="date" />
-            </div>
-
-            <div class="field">
-                <label class="field-label" for="item-target-date-input">Target Date</label>
-                <input id="item-target-date-input" type="date" />
-            </div>
-
-            <div class="checkbox-field">
-                <label class="field-label" for="item-completed-checkbox">Completed</label>
-                <input id="item-completed-checkbox" type="checkbox" name="Completed" unchecked> 
+            <div class="field-row">
+                <div class="field">
+                    <label class="field-label" for="item-target-date-input">Target Date</label>
+                    <input id="item-target-date-input" type="date" />
+                </div>
+            
+                <div class="checkbox-field">
+                    <label class="field-label" for="item-completed-checkbox">Completed</label>
+                    <input id="item-completed-checkbox" type="checkbox" name="Completed" unchecked> 
+                </div>
             </div>
 
         </form>
