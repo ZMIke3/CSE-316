@@ -122,6 +122,10 @@ export class AppController extends Observer {
                 this.#model.addTransaction(
                     new DuplicateItem_Transaction(this.#model, event.get('index')));
                 break;
+            case EventTypes.DELETE_ITEM_REQUESTED:
+                this.#model.addTransaction(
+                    new DeleteItem_Transaction(this.#model, event.get('index')));
+                break;
             case EventTypes.MOVE_ITEM_REQUESTED:
                 this.#model.addTransaction(new MoveItem_Transaction(
                     this.#model, event.get('fromIndex'), event.get('toIndex')));

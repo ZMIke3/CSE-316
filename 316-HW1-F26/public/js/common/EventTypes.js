@@ -23,6 +23,7 @@ export class EventTypes {
     static EDIT_ITEM_REQUESTED = 'EDIT_ITEM_REQUESTED';
     static DUPLICATE_ITEM_REQUESTED = 'DUPLICATE_ITEM_REQUESTED';
     static MOVE_ITEM_REQUESTED = 'MOVE_ITEM_REQUESTED';
+    static DELETE_ITEM_REQUESTED = 'DELETE_ITEM_REQUESTED';
 
     // ----- sent by the ItemModal -----
     static ITEM_MODAL_COMMIT = 'ITEM_MODAL_COMMIT';

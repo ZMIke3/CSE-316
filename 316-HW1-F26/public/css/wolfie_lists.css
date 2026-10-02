@@ -383,6 +383,11 @@ body {
     outline-offset: 0.0625rem;
 }
 
+/* .delete-button {
+    display: flex;
+    flex-direction: row;
+} */
+
 .priority-pill {
     grid-area: priority;
     justify-self: start;
